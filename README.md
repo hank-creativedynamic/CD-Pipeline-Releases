@@ -1,5 +1,7 @@
 # CD Pipeline Collection downloads
 
+**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.2 recovery download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/repair-1.5.2). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. This tested repair is available while the stable GitHub build checks finish.
+
 [Download the latest release](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/latest)
 
 Public downloads for CD Pipeline Collection and its seven standalone tools. Source code is maintained separately in a private repository. No GitHub account is required to download a published release.
@@ -16,7 +18,7 @@ Mac apps require **Apple Silicon and macOS 14 or later**. Extract the ZIP and mo
 
 ## Updates
 
-Install **v1.5.0 or later once** on each Mac. Earlier versions do not contain the updater. After that, use the app's **Check for updates…** menu and **Install and restart** when ready. Each standalone app updates independently.
+Use **v1.5.2 or later** for the corrected updater. Versions before v1.5.0 lack it; v1.5.0 and v1.5.1 need the recovery replacement above. After that, use the app's **Check for updates…** menu and **Install and restart** when ready. Each standalone app updates independently.
 
 The apps verify the publisher's signed update feed, the download checksum, app identity, and code signature before replacement. Installation waits until the app is idle, preserves a backup, and leaves user settings and media outside the app bundle. Automatic checks notify you; installation requires your action.
 
