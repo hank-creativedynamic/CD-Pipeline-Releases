@@ -1,6 +1,6 @@
 # CD Pipeline Collection downloads
 
-**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.2 recovery download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/repair-1.5.2). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. This tested repair is available while the stable GitHub build checks finish.
+**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.2 download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/v1.5.2). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. Version 1.5.2 is published and passed the complete GitHub build and test checks, including a real helper replacing and reopening a signed test app.
 
 [Download the latest release](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/latest)
 
