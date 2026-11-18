@@ -1,6 +1,6 @@
 # CD Pipeline Collection downloads
 
-**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.3 download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/v1.5.3). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. Version 1.5.3 includes the corrected updater and passed the complete GitHub build and test checks, including a real helper replacing and reopening a signed test app.
+**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.4 download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/v1.5.4). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. Version 1.5.4 includes the corrected updater and passed the complete GitHub build and test checks, including a real helper replacing and reopening a signed test app.
 
 [Download the latest release](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/latest)
 
@@ -16,18 +16,20 @@ Public downloads for CD Pipeline Collection and its seven standalone tools. Sour
 
 Mac apps require **Apple Silicon and macOS 14 or later**. Extract the ZIP and move the app into Applications before opening it. Proxy encoding requires a compatible FFmpeg installation with VideoToolbox support. Resolve installation obtains its matching native bridge from the user's installed Resolve SDK; no Blackmagic SDK binary is redistributed.
 
-## New in v1.5.3
+## New in v1.5.4
 
-The collection opens with **0 tools running** and no selected tab. Choose a tool when needed; a fresh launch does not restore previously open tools.
+Premiere **1.0.7** and Resolve **1.0.2** add **Timecode + waveform** as the default Multicam Sync mode. Recorded timecode narrows the search, and local audio comparison checks independent sections of the camera's scratch audio against production sound. **Waveform only** handles missing or unreliable camera timecode; **Timecode only** keeps the faster metadata-only workflow.
 
-Premiere **1.0.6** and Resolve **1.0.1** add:
+- Preview the entire imported project or filter to a footage folder, and choose the production-audio location separately.
+- Review match confidence, offsets, conflicting timecode, incomplete searches, and audio drift before creating timelines. Weak or ambiguous matches remain in review. No automatic audio stretching is applied.
+- Matching is local, uses one audio-decoding process with bounded memory and search time, and has a **Stop matching** control. FFmpeg and FFprobe are required for waveform analysis; timecode-only mode does not decode audio.
+- Create new synced timelines with each camera on its own track and the matched production sound. Known slow motion, clips without embedded audio, and confirmed production-audio nonmatches go to B-roll. Missing metadata or an incomplete search stays in review.
 
-- **Exporter drive search:** choose a drive or folder, including a mounted SMB share, then select the matching project delivery path.
-- **Multicam Sync:** preview the entire imported project or filter to a footage folder; choose the production-audio location separately. Recorded timecode aligns camera tracks into new synced timelines per shoot day. Known slow motion, clips without embedded audio, and clips without a verified production-audio match go to B-roll. Ambiguous metadata stays in review.
+Placement is accurate to video frames; this is not sample-accurate audio alignment. Preview does not modify source media. Creation retains a project backup and adds new generated bins/timelines. Do not switch projects or timelines during creation. Generated-media tests and automated host tests pass; **live Premiere XML import, Resolve timeline creation, and production-audio channel playback still need validation on a project copy**.
 
-Creation retains a project backup and adds new generated bins/timelines. It does not use waveform matching. FFprobe is required for read-only media metadata. Do not switch projects or timelines during creation. Automated host tests pass; **live Premiere XML import, Resolve timeline creation, and production-audio channel playback still need validation on a project copy**.
+These host installers are available as an [independent extension update](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/extensions-2026-11-18-02). Use **CD PP EXT → Check for updates** in the collection or standalone app. An installed v1.5.3 collection can update the extensions without reinstalling the collection. The v1.5.4 collection also includes the new offline installers.
 
-These host installers are also available as an [independent extension update](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/extensions-2026-11-18-01). Use **CD PP EXT → Check for updates**.
+The collection continues to open with **0 tools running** and no selected tab. Exporter drive search lets you choose a drive or folder, including a mounted SMB share, then select the matching project delivery path.
 
 ## Updates
 
