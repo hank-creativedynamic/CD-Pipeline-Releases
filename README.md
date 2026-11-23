@@ -12,9 +12,20 @@ Public downloads for CD Pipeline Collection and its seven standalone tools. Sour
 - **CD-PIPELINE-STANDALONE-APPS**: all seven independent apps; install only the tools you need. Each uses the CD logo with its feature name underneath.
 - **CD-Pipeline-ingest / upload / extensions / folders / production / proxies / storage**: individual app ZIPs. The `collection` ZIP is the app-only version of the master installer.
 - **CD-PP-EXT.zip**: Premiere panel installer.
-- **CD-RESOLVE-EXT.zip**: separate native DaVinci Resolve Studio 21.2+ integration installer, with Exporter, Proxy Swapper, Local Relink, Online Master, and Multicam Sync. Automated mock-host checks pass; live Resolve relinking/rendering still needs validation on a project copy.
+- **CD-RESOLVE-EXT.zip**: separate native DaVinci Resolve Studio 21.2+ integration installer, with Exporter, Proxy Swapper, Local Relink, Online Master, Multicam Sync, and Project Media. Automated mock-host checks pass; live Resolve relinking/rendering still needs validation on a project copy.
 
 Mac apps require **Apple Silicon and macOS 14 or later**. Extract the ZIP and move the app into Applications before opening it. Proxy encoding requires a compatible FFmpeg installation with VideoToolbox support. Resolve installation obtains its matching native bridge from the user's installed Resolve SDK; no Blackmagic SDK binary is redistributed.
+
+## Project Media extension update
+
+Premiere **1.0.8** and Resolve **1.0.3** add a **Project Media** tab. It audits source ownership across the current project's exposed timelines and lists media names, paths, timeline/track uses, confirmed outside references, and unverified cases. A file on shared storage can still be a valid current-project source.
+
+- **Premiere:** review an affected timeline and select its confirmed outside references. The panel saves a separate verified project backup, opens that timeline and selects the exact clips. Then use **Edit → Generate Source Clips for Media** in Premiere and rescan to verify the result. The panel does not run that native menu command automatically. Closed or ambiguous owners remain in review; open the relevant source project and rescan when needed.
+- **Resolve Studio 21.2+:** compares timeline sources, exposed nested timelines and alternate takes against the current Media Pool and parent roots. Shared/outside roots are distinguished from unverified sources; Resolve does not expose another owning project's name. **Import selected copies** saves/exports a project backup and adds verified local Media Pool items in a new bin. **Timeline replacement remains a native/manual step.** The report keeps imported copies separate from unresolved references.
+
+Scans are read-only. Project changes, stale or unreadable collections, and ambiguous IDs cannot produce an all-clear. Actions recheck source and timeline state. Original media files stay in place. Premiere reports paginate large results; Resolve Stop keeps active native imports tracked until they finish. Hidden/internal assets and complex clips can still require manual review.
+
+[Download this extension update](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/extensions-2026-11-23-01), or use **CD PP EXT → Check for updates**. Quit the relevant editing application before installing. **No collection reinstall is needed**; the latest application release remains **v1.5.5** with its existing offline installers. Automated checks cover the new workflows, but live Premiere Productions localization and Resolve shared-bin imports still need validation on a saved project copy.
 
 ## New in v1.5.5
 
