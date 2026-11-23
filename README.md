@@ -26,7 +26,7 @@ Messages now use Apple Mail's supported text body and attach the complete format
 
 Set up an enabled sending account in **Apple Mail** and allow the Pipeline app under **System Settings → Privacy & Security → Automation → Mail**. The Google integration connects Sheets; it does not configure email sending. If Mail accepts the message but it does not arrive, check Mail's Outbox and Connection Doctor. If a request times out or is stopped, check Outbox before retrying to avoid duplicates.
 
-Isolated Mail delivery, AppleScript compilation, Production report and lifecycle checks pass. The live setup check on the development Mac timed out before sending email; **inbox delivery has not been confirmed**. The update now displays such failures clearly. Existing accounts, settings and media are preserved. Collection and standalone apps update through **Check for updates… → Install and restart**. Premiere 1.0.7 and Resolve 1.0.2 installers remain unchanged.
+Isolated Mail delivery, AppleScript compilation, Production report and lifecycle checks pass. The initial setup probe and a later live connection test both timed out; **inbox delivery has not been confirmed**. Check Mail's setup/sign-in prompts, Automation permissions, and Outbox before retrying. The update now displays such failures clearly. Existing accounts, settings and media are preserved. Collection and standalone apps update through **Check for updates… → Install and restart**. Premiere 1.0.7 and Resolve 1.0.2 installers remain unchanged.
 
 ## Multicam Sync in v1.5.4
 
