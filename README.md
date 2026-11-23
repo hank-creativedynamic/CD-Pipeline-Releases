@@ -1,6 +1,6 @@
 # CD Pipeline Collection downloads
 
-**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.4 download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/v1.5.4). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. Version 1.5.4 includes the corrected updater and passed the complete GitHub build and test checks, including a real helper replacing and reopening a signed test app.
+**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.5 download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/v1.5.5). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. Version 1.5.5 includes the corrected updater and passed the complete GitHub build and test checks, including a real helper replacing and reopening a signed test app.
 
 [Download the latest release](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/latest)
 
@@ -16,7 +16,19 @@ Public downloads for CD Pipeline Collection and its seven standalone tools. Sour
 
 Mac apps require **Apple Silicon and macOS 14 or later**. Extract the ZIP and move the app into Applications before opening it. Proxy encoding requires a compatible FFmpeg installation with VideoToolbox support. Resolve installation obtains its matching native bridge from the user's installed Resolve SDK; no Blackmagic SDK binary is redistributed.
 
-## New in v1.5.4
+## New in v1.5.5
+
+**Production Tracker and Storage Manager email tests are fixed.** Both now have **Test email connection**, which sends a short message to the tool's configured recipients and shows progress and a result. This test does not wait for Google Sheets, drive scans, OFTV, or Slack. Storage Manager can test email during a drive scan.
+
+**Send test report** remains separate and prepares a fresh full report. Production refreshes Google Sheets first; Storage scans its drives. A full Storage test is disabled during an active scan so a click is not silently ignored.
+
+Messages now use Apple Mail's supported text body and attach the complete formatted report as **Report.html**. Storage also attaches its charts and embeds them in the HTML report. The apps require an explicit successful response from Mail before reporting acceptance; failures do not consume the scheduled email success marker. Requests run outside the app's UI thread, have a time limit, and stop when their tool closes.
+
+Set up an enabled sending account in **Apple Mail** and allow the Pipeline app under **System Settings → Privacy & Security → Automation → Mail**. The Google integration connects Sheets; it does not configure email sending. If Mail accepts the message but it does not arrive, check Mail's Outbox and Connection Doctor. If a request times out or is stopped, check Outbox before retrying to avoid duplicates.
+
+Isolated Mail delivery, AppleScript compilation, Production report and lifecycle checks pass. The live setup check on the development Mac timed out before sending email; **inbox delivery has not been confirmed**. The update now displays such failures clearly. Existing accounts, settings and media are preserved. Collection and standalone apps update through **Check for updates… → Install and restart**. Premiere 1.0.7 and Resolve 1.0.2 installers remain unchanged.
+
+## Multicam Sync in v1.5.4
 
 Premiere **1.0.7** and Resolve **1.0.2** add **Timecode + waveform** as the default Multicam Sync mode. Recorded timecode narrows the search, and local audio comparison checks independent sections of the camera's scratch audio against production sound. **Waveform only** handles missing or unreliable camera timecode; **Timecode only** keeps the faster metadata-only workflow.
 
