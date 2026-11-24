@@ -1,10 +1,22 @@
 # CD Pipeline Collection downloads
 
-**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.5 download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/v1.5.5). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. Version 1.5.5 includes the corrected updater and passed the complete GitHub build and test checks, including a real helper replacing and reopening a signed test app.
+**Updater stuck in v1.5.0 or v1.5.1?** Use the [v1.5.6 download](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/v1.5.6). Force Quit the stuck Pipeline app and its ApplicationUpdateInstaller helper, then replace only the app in Applications. Keep Application Support, Keychain, and all media. Version 1.5.6 includes the corrected updater and passed the complete GitHub build and test checks, including a real helper replacing and reopening a signed test app.
 
 [Download the latest release](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/latest)
 
 Public downloads for CD Pipeline Collection and its seven standalone tools. Source code is maintained separately in a private repository. No GitHub account is required to download a published release.
+
+## Fewer Keychain requests in v1.5.6
+
+Saved integration credentials now share **one protected macOS Keychain entry**. Background token renewals, account checks, and automatic setup cannot open password dialogs. When access is blocked, use **Integrations → Restore saved connections**. Standalone recovery checks only that tool's relevant accounts. Explicit recovery verifies both read and update access by saving identical credential values; macOS may request approval separately for these operations. Canceling an access request stops further recovery requests.
+
+The first recovery from older releases may still ask for each old saved item. Choose **Always Allow** in the macOS dialog to reuse access for the installed app. Subsequent releases use the combined entry, reducing per-account approvals. Development signatures can still need approval after an update, and each standalone app may need its own approval. Eliminating update reauthorization requires a consistent signing certificate.
+
+Credentials remain in Keychain. The app preserves old entries for recovery, records disconnects so old tokens cannot reappear, and protects concurrent saves from different Pipeline apps. The coordination file contains only an opaque cache revision; no credentials are stored in plaintext or exposed to all apps. The apps do not change system Keychain security settings or ACLs.
+
+Version 1.5.6 also fixes a status-file race in the updater that could falsely report unsafe permissions while the helper replaced a valid acknowledgment. It retries only detached reads and keeps the security checks in place.
+
+Collection and all seven standalone apps are included. Use **Check for updates… → Install and restart**, then **Integrations → Restore saved connections**. Missing, expired, or revoked provider connections may still need sign-in. Isolated credential, cancellation, renewal, and regression checks pass without reading real accounts or sending messages.
 
 ## Choose your app
 
@@ -35,7 +47,7 @@ Premiere **1.0.11** includes the faster **Project Media** workflow introduced in
 
 The Premiere scan caches metadata for unique native sources and yields while reading wide bins and checking owners. The updated deterministic fixture measured **66% fewer native reads** and **over 99% fewer full metadata reads**; actual scan time depends on the project and host. Scans are read-only, and media files stay in place. Source and timeline state are checked again before changes; missing, ambiguous or incomplete evidence cannot produce an all-clear.
 
-[Download this extension update](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/extensions-2026-11-23-04), or use **CD PP EXT → Check for updates** after the current relink run finishes. Quit Premiere before installing and reopen it afterward. **No collection reinstall is needed**; the latest application remains **v1.5.5** with its existing offline installers. Automated host, backup, cancellation and full build checks passed. Live automatic Premiere replacement and Resolve shared-bin imports still need validation on a saved project copy.
+[Download this extension update](https://github.com/hank-creativedynamic/CD-Pipeline-Releases/releases/tag/extensions-2026-11-23-04), or use **CD PP EXT → Check for updates** after the current relink run finishes. Quit Premiere before installing and reopen it afterward. Extension updates do not require reinstalling the collection. The **v1.5.6** application now also includes the Premiere 1.0.11 and Resolve 1.0.3 offline installers. Automated host, backup, cancellation and full build checks passed. Live automatic Premiere replacement and Resolve shared-bin imports still need validation on a saved project copy.
 
 ## New in v1.5.5
 
